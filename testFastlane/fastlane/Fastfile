@@ -1,0 +1,162 @@
+# Customise this file, documentation can be found here:
+# https://github.com/fastlane/fastlane/tree/master/docs
+# All available actions: https://github.com/fastlane/fastlane/blob/master/docs/Actions.md
+# can also be listed using the `fastlane actions` command
+
+# Change the syntax highlighting to Ruby
+# All lines starting with a # are ignored when running `fastlane`
+
+# By default, fastlane will send which actions are used
+# No personal data is shared, more information on https://github.com/fastlane/enhancer
+# Uncomment the following line to opt out
+# opt_out_usage
+
+# If you want to automatically update fastlane if a new version is available:
+# update_fastlane
+
+# This is the minimum version number required.
+# Update this, if you use features of a newer version
+fastlane_version "1.66.0"
+REQUIRED_XCODE_VERSION = "7.2.1"
+default_platform :ios
+
+platform :ios do
+  before_all do
+    # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
+    cocoapods
+
+  end
+
+  private_lane :verify_xcode_version do
+    ensure_xcode_version(version: REQUIRED_XCODE_VERSION)
+  end
+
+  def load_keys
+    begin
+      import("keys")
+    rescue => exception
+      UI.error("fastlane/keys file not found. To use this Fastfile, copy fastlane/keys.template into fastlane/keys and fill in the values")
+      raise exception
+    end
+  end
+
+  desc "Runs all the tests"
+  lane :test do
+    scan
+  end
+
+  desc "Submit a new Beta Build to Apple TestFlight"
+  desc "This will also make sure the profile is up to date"
+  lane :beta do
+    # match(type: "appstore") # more information: https://codesigning.guide
+    gym # Build your app - more options available
+    pilot
+
+    # sh "your_script.sh"
+    # You can also use other beta testing services here (run `fastlane actions`)
+  end
+
+  desc "Deploy a new version to the App Store"
+  lane :appstore do
+    # match(type: "appstore")
+    # snapshot
+    gym # Build your app - more options available
+    deliver(force: true)
+    # frameit
+  end
+
+
+  lane :testflight do |options|
+    #load_keys
+
+    ensure_git_branch(
+      branch: "(master)"
+    )
+
+    ensure_git_status_clean
+
+    verify_xcode_version
+
+    version_number = options[:version_number]
+
+    raise "Missing version number: use version_number parameter" unless version_number != nil
+
+    increment_version_number(version_number: version_number)
+    build_number = increment_build_number
+    complete_version_number = version_string(version_number, build_number)
+
+    commit_version_bump(
+      message: "Version bump to #{complete_version_number}",
+      xcodeproj: "testFastlane.xcodeproj"
+    )
+
+    change_log = "CHANGELOG TBD. Version: #{complete_version_number}"
+
+    skip_metadata = options[:skip_metadata]
+
+    unless skip_metadata == true
+      clear_derived_data
+      screenshots
+      update_metadata
+    else
+      Helper.log.info("Skipping taking screenshots and uploading metadata".green)
+    end
+
+    clean_build_artifacts
+    clear_derived_data
+
+    sigh(output_path: "/tmp")
+    gym(
+      scheme: "testFastlane",
+      configuration: "Release",
+      clean: true
+    )
+
+    testflight(
+      changelog: change_log,
+      skip_submission: true,
+      distribute_external: false
+    )
+
+    set_github_release(
+      repository_name: "Nable/testFastlane",
+      #api_token: ENV["GITHUB_API_TOKEN"],
+      api_token: "f4bda584f7bad9adde2c82d0f3a0355060b723a3",
+      name: complete_version_number,
+      tag_name: tag_name("testflight", version_number, build_number),
+      commitish: git_branch,
+      description: change_log_since_last_tag,
+      is_prerelease: false
+    )
+
+    slack(
+      message: "Submitted build of testFastlane to TestFlight: v#{complete_version_number}",
+      channel: "#general"
+    )
+
+    rocket
+  end
+
+
+  # You can define as many lanes as you want
+
+  after_all do |lane|
+    # This block is called, only if the executed lane was successful
+
+    # slack(
+    #   message: "Successfully deployed new App Update."
+    # )
+  end
+
+  error do |lane, exception|
+    # slack(
+    #   message: exception.message,
+    #   success: false
+    # )
+  end
+end
+
+
+
+# More information about multiple platforms in fastlane: https://github.com/fastlane/fastlane/blob/master/docs/Platforms.md
+# All available actions: https://github.com/fastlane/fastlane/blob/master/docs/Actions.md

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		37CDB8DD8C0FAC1F1C64EA4F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAA617F38FB03D172781D42C /* Pods.framework */; };
 		D2F56D401C9D9A740017F459 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2F56D3F1C9D9A740017F459 /* CoreData.framework */; };
 		D2F56D441C9D9A740017F459 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F56D431C9D9A740017F459 /* main.m */; };
 		D2F56D471C9D9A740017F459 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F56D461C9D9A740017F459 /* AppDelegate.m */; };
@@ -22,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		72DD05E63A76937247527283 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		A2E4DB1B28FF880A8A47A4F5 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		D2F56D3C1C9D9A740017F459 /* testFastlane.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testFastlane.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2F56D3F1C9D9A740017F459 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		D2F56D431C9D9A740017F459 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -44,6 +47,7 @@
 		D2F56D661C9D9A750017F459 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D2F56D691C9D9A750017F459 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D2F56D6B1C9D9A750017F459 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DAA617F38FB03D172781D42C /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,18 +56,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2F56D401C9D9A740017F459 /* CoreData.framework in Frameworks */,
+				37CDB8DD8C0FAC1F1C64EA4F /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F0A0917DF915196F339574C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A2E4DB1B28FF880A8A47A4F5 /* Pods.debug.xcconfig */,
+				72DD05E63A76937247527283 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		D2F56D331C9D9A740017F459 = {
 			isa = PBXGroup;
 			children = (
 				D2F56D411C9D9A740017F459 /* testFastlane */,
 				D2F56D3E1C9D9A740017F459 /* Frameworks */,
 				D2F56D3D1C9D9A740017F459 /* Products */,
+				0F0A0917DF915196F339574C /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -79,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				D2F56D3F1C9D9A740017F459 /* CoreData.framework */,
+				DAA617F38FB03D172781D42C /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -181,9 +197,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D2F56D6E1C9D9A750017F459 /* Build configuration list for PBXNativeTarget "testFastlane" */;
 			buildPhases = (
+				758099C3C5B6F711E66DE4EF /* Check Pods Manifest.lock */,
 				D2F56D381C9D9A740017F459 /* Sources */,
 				D2F56D391C9D9A740017F459 /* Frameworks */,
 				D2F56D3A1C9D9A740017F459 /* Resources */,
+				3941BC8BA5A0BFDF02123777 /* Embed Pods Frameworks */,
+				C54FD018F6A7A835256D5A6D /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -205,6 +224,7 @@
 				TargetAttributes = {
 					D2F56D3B1C9D9A740017F459 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = W28TCTNTKY;
 					};
 				};
 			};
@@ -239,6 +259,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3941BC8BA5A0BFDF02123777 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		758099C3C5B6F711E66DE4EF /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C54FD018F6A7A835256D5A6D /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D2F56D381C9D9A740017F459 /* Sources */ = {
@@ -361,8 +429,10 @@
 		};
 		D2F56D6F1C9D9A750017F459 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A2E4DB1B28FF880A8A47A4F5 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = testFastlane/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = is.vertical.testFastlane;
@@ -372,8 +442,10 @@
 		};
 		D2F56D701C9D9A750017F459 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 72DD05E63A76937247527283 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = testFastlane/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = is.vertical.testFastlane;
@@ -400,6 +472,7 @@
 				D2F56D701C9D9A750017F459 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

@@ -51,3 +51,38 @@ Carthage/Build
 
 fastlane/report.xml
 fastlane/screenshots
+testFastlane/Pods/CHCSVParser/LICENSE.txt
+testFastlane/Pods/CHCSVParser/README.markdown
+testFastlane/Pods/CHCSVParser/CHCSVParser/CHCSVParser/CHCSVParser.h
+testFastlane/Pods/CHCSVParser/CHCSVParser/CHCSVParser/CHCSVParser.m
+testFastlane/Pods/Headers/Private/CHCSVParser/CHCSVParser.h
+testFastlane/Pods/Headers/Private/SWRevealViewController/SWRevealViewController.h
+testFastlane/Pods/Pods.xcodeproj/project.pbxproj
+testFastlane/Pods/SWRevealViewController/LICENSE.txt
+testFastlane/Pods/SWRevealViewController/README.md
+testFastlane/Pods/SWRevealViewController/SWRevealViewController/SWRevealViewController.h
+testFastlane/Pods/SWRevealViewController/SWRevealViewController/SWRevealViewController.m
+testFastlane/Pods/Target Support Files/CHCSVParser/CHCSVParser-dummy.m
+testFastlane/Pods/Target Support Files/CHCSVParser/CHCSVParser-prefix.pch
+testFastlane/Pods/Target Support Files/CHCSVParser/CHCSVParser-umbrella.h
+testFastlane/Pods/Target Support Files/CHCSVParser/CHCSVParser.modulemap
+testFastlane/Pods/Target Support Files/CHCSVParser/CHCSVParser.xcconfig
+testFastlane/Pods/Target Support Files/CHCSVParser/Info.plist
+testFastlane/Pods/Target Support Files/Pods/Info.plist
+testFastlane/Pods/Target Support Files/Pods/Pods-acknowledgements.markdown
+testFastlane/Pods/Target Support Files/Pods/Pods-acknowledgements.plist
+testFastlane/Pods/Target Support Files/Pods/Pods-dummy.m
+testFastlane/Pods/Target Support Files/Pods/Pods-frameworks.sh
+testFastlane/Pods/Target Support Files/Pods/Pods-resources.sh
+testFastlane/Pods/Target Support Files/Pods/Pods-umbrella.h
+testFastlane/Pods/Target Support Files/Pods/Pods.debug.xcconfig
+testFastlane/Pods/Target Support Files/Pods/Pods.modulemap
+testFastlane/Pods/Target Support Files/Pods/Pods.release.xcconfig
+testFastlane/Pods/Target Support Files/SWRevealViewController/Info.plist
+testFastlane/Pods/Target Support Files/SWRevealViewController/SWRevealViewController-dummy.m
+testFastlane/Pods/Target Support Files/SWRevealViewController/SWRevealViewController-prefix.pch
+testFastlane/Pods/Target Support Files/SWRevealViewController/SWRevealViewController-umbrella.h
+testFastlane/Pods/Target Support Files/SWRevealViewController/SWRevealViewController.modulemap
+testFastlane/Pods/Target Support Files/SWRevealViewController/SWRevealViewController.xcconfig
+testFastlane/fastlane/report.xml
+testFastlane/Pods/Manifest.lock
