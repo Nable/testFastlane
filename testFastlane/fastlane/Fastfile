@@ -81,6 +81,8 @@ platform :ios do
   end
 
 
+  desc "Submit a new Beta Build to Apple TestFlight"
+  desc "This will also make sure the profile is up to date"
   lane :testflight do |options|
     #load_keys
 
@@ -89,52 +91,44 @@ platform :ios do
     )
 
     #verifica che sia stato committato tutto
-    #ensure_git_status_clean
+    ensure_git_status_clean
 
     verify_xcode_version
 
-    version_number = options[:version_number]
-    build_number = options[:build_number]
-    raise "Missing version number: use version_number parameter" unless version_number != nil
-    increment_version_number(version_number: version_number)
-    increment_build_number(build_number: build_number)
+    #version_number = options[:version_number]
+    #build_number = options[:build_number]
+    #raise "Missing version number: use version_number parameter" unless version_number != nil
+    #increment_version_number(version_number: version_number)
+    #increment_build_number(build_number: build_number)
 
-    #version_number = get_version_number
-    #build_number =  get_build_number
+    version_number = get_version_number
+    build_number =  get_build_number
     complete_version_number = version_string(version_number, build_number)
 
-    commit_version_bump(
-      message: "Version bump to #{complete_version_number}",
-      xcodeproj: "testFastlane.xcodeproj"
-    )
+    #commit_version_bump(
+    #  message: "Version bump to #{complete_version_number}",
+    #  xcodeproj: "testFastlane.xcodeproj"
+    #)
 
     change_log = "CHANGELOG TBD. Version: #{complete_version_number}"
 
     skip_metadata = options[:skip_metadata]
 
-    unless skip_metadata == true
-      clear_derived_data
-      screenshots
-      update_metadata
-    else
-      Helper.log.info("Skipping taking screenshots and uploading metadata".green)
-    end
-
     clean_build_artifacts
     clear_derived_data
 
-    sigh(output_path: "/tmp")
-    gym(
-      scheme: "testFastlane",
-      configuration: "Release",
-      clean: true
-    )
+    #sigh(output_path: "/tmp")
+    #gym(
+    #  scheme: "testFastlane",
+    #  configuration: "Release",
+    #  clean: true
+    #)
 
-    testflight(
-      changelog: change_log,
-      skip_submission: true,
-      distribute_external: false
-    )
+    #testflight(
+    #  changelog: change_log,
+    #  skip_submission: true,
+    #  distribute_external: false
+    #)
 
     set_github_release(
       repository_name: "Nable/testFastlane",
@@ -144,8 +138,13 @@ platform :ios do
       tag_name: tag_name("testflight", version_number, build_number),
       commitish: git_branch,
       description: change_log_since_last_tag,
-      is_prerelease: false
+      is_prerelease: false,
     )
+
+    push_to_git_remote
+
+
+    push_git_tags
 
     slack(
       message: "Submitted build of testFastlane to TestFlight: v#{complete_version_number}",
