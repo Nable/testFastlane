@@ -1,0 +1,8 @@
+
+use_frameworks!
+
+# Lateral Menu
+pod 'SWRevealViewController', '~> 2.3.0'
+
+# Management CSV for export
+pod 'CHCSVParser', '~> 2.1'
