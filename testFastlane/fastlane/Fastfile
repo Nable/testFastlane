@@ -94,9 +94,10 @@ platform :ios do
     verify_xcode_version
 
     version_number = options[:version_number]
+    build_number = options[:build_number]
     raise "Missing version number: use version_number parameter" unless version_number != nil
     increment_version_number(version_number: version_number)
-    build_number = increment_build_number
+    increment_build_number(build_number: build_number)
 
     #version_number = get_version_number
     #build_number =  get_build_number
