@@ -100,7 +100,8 @@ platform :ios do
     #complete_version_number = version_string(version_number, build_number)
 
     version_number = get_version_number
-    build_number = "0"#get_build_number
+    build_number = 0
+    #get_build_number
     complete_version_number = version_string(version_number, build_number)
 
     commit_version_bump(
