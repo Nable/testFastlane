@@ -89,14 +89,18 @@ platform :ios do
     )
 
     #verifica che sia stato committato tutto
-    ensure_git_status_clean
+    #ensure_git_status_clean
 
     verify_xcode_version
 
-    version_number = options[:version_number]
-    raise "Missing version number: use version_number parameter" unless version_number != nil
-    increment_version_number(version_number: version_number)
-    build_number = increment_build_number
+    #version_number = options[:version_number]
+    #raise "Missing version number: use version_number parameter" unless version_number != nil
+    #increment_version_number(version_number: version_number)
+    #build_number = increment_build_number
+    #complete_version_number = version_string(version_number, build_number)
+
+    version_number = get_version_number
+    build_number = "0"#get_build_number
     complete_version_number = version_string(version_number, build_number)
 
     commit_version_bump(
