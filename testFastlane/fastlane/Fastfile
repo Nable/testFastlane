@@ -133,7 +133,7 @@ platform :ios do
     set_github_release(
       repository_name: "Nable/testFastlane",
       #api_token: ENV["GITHUB_API_TOKEN"],
-      api_token: "f4bda584f7bad9adde2c82d0f3a0355060b723a3",
+      api_token: "b8cda73b3674c53632a8d4d4737256c9eeccf065",
       name: complete_version_number,
       tag_name: tag_name("testflight", version_number, build_number),
       commitish: git_branch,
